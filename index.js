@@ -1,35 +1,32 @@
 'use strict'
 
-const accountSid = "AC3789fe43d38e372e1f6623482366e716";
-const authToken = "a5bdae09eb6a0bc5d7daa592bbc54a4e";
-const client = require('twilio')(accountSid, authToken);
+exports.handler = (event, context, callback) => {
 
-exports.handler = async (event, context) => {
-  let responseBody = "";
-  let statusCode = "";
+  // Your Account SID from www.twilio.com/console
+  // See http://twil.io/secure for important security information
+  const accountSid = "AC3789fe43d38e372e1f6623482366e716";
 
-  client.messages
-    .create({
+  // Your Auth Token from www.twilio.com/console 
+  // See http://twil.io/secure for important security information
+  const authToken = "a5bdae09eb6a0bc5d7daa592bbc54a4e";
+
+  // Import Twilio's Node Helper library
+  // Create an authenticated Twilio Client instance
+  const client = require('twilio')(accountSid, authToken);
+
+  // Send a text message
+  client.messages.create({
       body: event.message,
-      from: '+14083514038',
-      to: event.phone
-    })
-    .then(message => {
-      responseBody = "yes";
-      statusCode = 200
-    })
-    .catch(error => {
-      responseBody = "no";
-      statusCode = 400;
-    });
+      to: event.phone,  // your phone number
+      from: '+14083514038' // a valid Twilio number
+  })
+      .then((message) => {
+          // Success, return message SID
+          callback(null, message.sid);
+      })
+      .catch((e) => {
+              // Error, return error object
+          callback(Error(e));
+      });
 
-  const response = {
-    statusCode: statusCode,
-    headers: {
-      "myHeader": "test"
-    },
-    body: responseBody
-  }
-
-  return response;
-}
+};
