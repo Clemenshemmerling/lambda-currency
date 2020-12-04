@@ -29,7 +29,7 @@ exports.handler = async (event, context) => {
     headers: {
       "myHeader": "test"
     },
-    body: event
+    body: client
   }
 
   return response;
