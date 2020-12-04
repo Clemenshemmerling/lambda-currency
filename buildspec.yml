@@ -26,7 +26,7 @@ phases:
       # name: version
       # name: version
     commands:
-       - yarn install
+       - npm install
       # - command
   #pre_build:
     #commands:
@@ -48,13 +48,13 @@ phases:
     #base-directory: location
     #discard-paths: yes
     #file-format: JunitXml | CucumberJson
-# artifacts:
-#   files:
-#      - '**/*'
-#     # - location
-#   #name: $(date +%Y-%m-%d)
-#   discard-paths: no
-#   base-directory: build
+artifacts:
+  files:
+     - '**/*'
+    # - location
+  #name: $(date +%Y-%m-%d)
+  discard-paths: no
+  # base-directory: build
 #cache:
   #paths:
     # - paths
