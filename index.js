@@ -1,8 +1,8 @@
-exports.handler = async (event, country) => {
+exports.handler = async (data) => {
     // TODO implement
     const response = {
         statusCode: 200,
-        body: JSON.stringify(event),
+        body: data.country,
     }
     return response;
 };
