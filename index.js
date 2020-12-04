@@ -8,7 +8,7 @@ const client = require('twilio')(accountSid, authToken);
 exports.handler = async (event, context) => {
   let responseBody;
   let statusCode;
-  
+
   client.messages
     .create({
       body: event.message,
@@ -20,8 +20,8 @@ exports.handler = async (event, context) => {
       statusCode = 200
     })
     .catch(error => {
-      responseBody = message;
-      statusCode = error.status;
+      responseBody = error;
+      statusCode = 400;
     });
 
   const response = {
