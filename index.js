@@ -12,21 +12,19 @@ exports.handler = async (event, context) => {
   let statusCode = 0;
 
 
-  // const params = {
-  //   TableName: "currency",
-  //   Item: event
-  // }
+  const params = {
+    TableName: "currency",
+    Item: event
+  }
 
-  // try {
-  //   const data = await documentClient.put(params).promise();
-  //   responseBody = JSON.stringify(data);
-  //   statusCode = 201;
-  // } catch (err) {
-  //   responseBody = `Unable to put user data`;
-  //   statusCode = 403;
-  // }
-
-  responseBody = event;
+  try {
+    const data = await documentClient.put(params).promise();
+    responseBody = JSON.stringify(data);
+    statusCode = 201;
+  } catch (err) {
+    responseBody = err;
+    statusCode = 403;
+  }
 
   const response = {
     statusCode: statusCode,
