@@ -28,7 +28,7 @@ exports.handler = async (event, context) => {
     headers: {
       "myHeader": "test"
     },
-    body: client.username
+    body: responseBody
   }
 
   return response;
