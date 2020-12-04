@@ -4,7 +4,6 @@ const accountSid = "AC3789fe43d38e372e1f6623482366e716";
 const authToken = "a5bdae09eb6a0bc5d7daa592bbc54a4e";
 const client = require('twilio')(accountSid, authToken);
 
-
 exports.handler = async (event, context) => {
   let responseBody;
   let statusCode;
@@ -29,7 +28,7 @@ exports.handler = async (event, context) => {
     headers: {
       "myHeader": "test"
     },
-    body: responseBody
+    body: client.username
   }
 
   return response;
