@@ -1,4 +1,3 @@
-  
 'use strict'
 const AWS = require('aws-sdk');
 
@@ -14,15 +13,17 @@ exports.handler = async (event, context) => {
 
   const params = {
     TableName: "currency",
-    Item: event
+    Key: {
+      id: event.id
+    }
   }
 
   try {
-    const data = await documentClient.put(params).promise();
-    responseBody = JSON.stringify(data);
-    statusCode = 201;
+    const data = await documentClient.get(params).promise();
+    responseBody = JSON.stringify(data.Item);
+    statusCode = 200;
   } catch (err) {
-    responseBody = err;
+    responseBody = `Unable to get user data`;
     statusCode = 403;
   }
 
