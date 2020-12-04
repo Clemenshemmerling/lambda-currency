@@ -23,8 +23,10 @@ exports.handler = async (event, context) => {
       responseBody = err;
       statusCode = 403;
     }
-    responseBody = data;
-    statusCode = 200; 
+    if (data) {
+      responseBody = data;
+      statusCode = 200; 
+    }
   });
 
   // try {
