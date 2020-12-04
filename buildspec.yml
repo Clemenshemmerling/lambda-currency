@@ -32,9 +32,9 @@ phases:
     #commands:
       # - command
       # - command
-  # build:
-  #   commands:
-  #      - yarn build
+   build:
+     commands:
+        - npm install 
       # - command
   #post_build:
     #commands:
