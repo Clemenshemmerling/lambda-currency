@@ -23,7 +23,7 @@ exports.handler = async (event, context) => {
     responseBody = JSON.stringify(data.Item);
     statusCode = 200;
   } catch (err) {
-    responseBody = `Unable to get user data`;
+    responseBody = err;
     statusCode = 403;
   }
 
