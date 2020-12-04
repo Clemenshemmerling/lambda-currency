@@ -1,42 +1,29 @@
 'use strict'
-const AWS = require('aws-sdk');
 
-AWS.config.update({ region: "us-west-1"});
+const accountSid = "AC3789fe43d38e372e1f6623482366e716";
+const authToken = "061b4b52f4c9e6c1ab902e16412b2e9b";
+const client = require('twilio')(accountSid, authToken);
+
 
 exports.handler = async (event, context) => {
-  const ddb = new AWS.DynamoDB({ apiVersion: "2012-10-08"});
-  // const documentClient = new AWS.DynamoDB.DocumentClient({ region: "us-west-1"});
+  let responseBody;
+  let statusCode;
 
-  let responseBody = "";
-  let statusCode = 0;
-
-
-  const params = {
-    TableName: "Products",
-    Key: {
-      id: {N: event.id}
-    }
-  }
-
-  ddb.getItem(params, (err, data) => {
-    if (err) {
-      responseBody = err;
-      statusCode = 403;
-    }
-    if (data) {
-      responseBody = data;
-      statusCode = 200; 
-    }
-  });
-
-  // try {
-  //   const data = await documentClient.get(params).promise();
-  //   responseBody = JSON.stringify(data.Item);
-  //   statusCode = 200;
-  // } catch (err) {
-  //   responseBody = err;
-  //   statusCode = 403;
-  // }
+  const client = require('twilio')(accountSid, authToken);
+  client.messages
+    .create({
+      body: event.message,
+      from: '+14083514038',
+      to: event.phone
+    })
+    .then(message => {
+      responseBody = message;
+      statusCode = 200
+    })
+    .catch(error => {
+      responseBody = message;
+      statusCode = error.status;
+    });
 
   const response = {
     statusCode: statusCode,
