@@ -29,7 +29,7 @@ exports.handler = async (event, context) => {
     headers: {
       "myHeader": "test"
     },
-    body: JSON.stringify(client)
+    body: client.Twilio.username
   }
 
   return response;
