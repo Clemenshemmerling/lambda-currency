@@ -5,8 +5,8 @@ const authToken = "a5bdae09eb6a0bc5d7daa592bbc54a4e";
 const client = require('twilio')(accountSid, authToken);
 
 exports.handler = async (event, context) => {
-  let responseBody;
-  let statusCode;
+  let responseBody = "";
+  let statusCode = "";
 
   client.messages
     .create({
@@ -15,11 +15,11 @@ exports.handler = async (event, context) => {
       to: event.phone
     })
     .then(message => {
-      responseBody = message.sid;
+      responseBody = "yes";
       statusCode = 200
     })
     .catch(error => {
-      responseBody = error;
+      responseBody = "no";
       statusCode = 400;
     });
 
