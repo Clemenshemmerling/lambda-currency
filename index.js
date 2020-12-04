@@ -9,27 +9,27 @@ exports.handler = async (event, context) => {
   let responseBody;
   let statusCode;
 
-  client.messages
-    .create({
-      body: event.message,
-      from: '+14083514038',
-      to: event.phone
-    })
-    .then(message => {
-      responseBody = message.sid;
-      statusCode = 200
-    })
-    .catch(error => {
-      responseBody = error;
-      statusCode = 400;
-    });
+  // client.messages
+  //   .create({
+  //     body: event.message,
+  //     from: '+14083514038',
+  //     to: event.phone
+  //   })
+  //   .then(message => {
+  //     responseBody = message.sid;
+  //     statusCode = 200
+  //   })
+  //   .catch(error => {
+  //     responseBody = error;
+  //     statusCode = 400;
+  //   });
 
   const response = {
     statusCode: statusCode,
     headers: {
       "myHeader": "test"
     },
-    body: responseBody
+    body: event
   }
 
   return response;
