@@ -12,9 +12,9 @@ exports.handler = async (event, context) => {
 
 
   const params = {
-    TableName: "music",
+    TableName: "currency",
     Key: {
-      artist: {S: event.artist}
+      id: {S: event.id}
     }
   }
 
