@@ -4,11 +4,11 @@ exports.handler = (event, context, callback) => {
 
   // Your Account SID from www.twilio.com/console
   // See http://twil.io/secure for important security information
-  const accountSid = "AC3789fe43d38e372e1f6623482366e716";
+  const accountSid = "sid";
 
   // Your Auth Token from www.twilio.com/console 
   // See http://twil.io/secure for important security information
-  const authToken = "a5bdae09eb6a0bc5d7daa592bbc54a4e";
+  const authToken = "token";
 
   // Import Twilio's Node Helper library
   // Create an authenticated Twilio Client instance
